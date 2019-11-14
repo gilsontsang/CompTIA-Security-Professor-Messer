@@ -1,0 +1,958 @@
+============================ 1.2 ============================
+
+Malware
+- Many types including: Virus, Crypto-malware, Ransomware, Worms, Trojan Horses, Rootkit, Keylogger, Adware/Spyware, Botnet
+- Preventions:
+1) Don't click on things
+2) Keep OS up to date 
+3) Keep Adobe Flash up to date
+
+Virus
+- Malware that reproduces itself from device to device (similar to human virus, person to person)
+- Reproduce through file systems or network
+- Just running a program can spread a virus
+- Anti-virus software, signature file updated
+- Some can stay at Boot Sector (doesn't need OS)
+
+Types of Viruses:
+- Program viruses (part of the application)
+- Boot sector viruses (doesn't need OS)
+- Script viruses (OS and Browser)
+- Macro Viruses (in MS Office, in spreadsheet)
+- Worms (move itself through the network - doesn't need human intervention)
+- Wannacry worm (encrypts data on the computer, then looks for other computers on the network with the same vulnerbility - infected SMB v1 server message block, installs EternalBlue, then installs backdoor, then install WannaCry, and then again...)
+
+Ransomware:
+- Take data away from you, then gives back to you after a sum is paid
+- Fake ransomware, "locks your computer by the police", looking for payment
+
+Crypto-malware:
+- Encrypts all of your data for random (encrypts all except for OS, wants you to run, but not working)
+- Prevention: OFFLINE backup, security patches up-to-date, latest signature from anti-virus/anti-malware)
+
+Trojan horse:
+- Application pretends to be normal application, then embeds itself 
+
+Backdoors:
+- Communicates with outside
+- Even with legitimate software, it could be written poorly and allows for backdoors
+
+RAT (Remote Access Trojans/Remote Administration Tools):
+- Ultimate backdoor
+- Malware installs the server/service to the computer, then bad guys can connet with this service
+
+Rootkits:
+- Highest level in windows (administrator), linux (root user)
+- rootkit modifies the kernal OS (very lowest level of OS, to avoid antivirus/malware from identification)
+- Built into kernal, will not appear in Task Manager (because not in OS)
+
+Zeus/Zbot malware:
+- Famous for cleaning out bank accounts
+- When combined with Necurs rootkit, makes sure you can't delete it (access denied)
+- Can use RootKitRevealer, specific RootKitRemover
+- PREVENTION: UEFI BIOS, prevent application install on Kernel
+ 
+Keyloggers:
+- ex. DarkComet-RAT Keylogger
+- Keys, SS, etc
+
+Adware/Spyware~
+- PREVENTION: OFFLINE backup, latest signature from anti-virus/anti-malware)
+
+Botnets (Robot Networks):
+- Once installed, it does nothing - waits for commands from the mothership
+- ZeuS (used for stealing money)
+
+Logic Bomb:
+- Waits for event to occur (time bomb, user event), deleting/removing information from system 
+- Usually someone with administrator access will set this 
+- No predefind signature
+- PREVENTION: Monitor change, constant auditing
+
+Phishing:
+- When bad guys try to convince you to give up information (ex. fake website, fake e-mails)
+- Vishing stands for voice phishing
+- Spear phishing - focus on a narrow group of people
+- Spear phishing - "Whaling" when spear phishing the CEO (ex. John Podesta's e-mails)
+- Could be hoax/scams
+
+Tailgating:
+- Use someone else to gain access to a building
+
+Watering Hole Attacks:
+- Assume your network is completely protected and bad guys can't get in, they attack the websites that you visit and infect those websites (ex. websites that you often visit and labelled as safe sites)
+- Bad guy, instead of infecting you, they infect the 3rd party website. Everyone that visit that website will get infected as well
+*Defence-in-depth: layered defense, never rely on a single defense (Firewall, IPS, Anti-virus, Anti-malware, making sure signatures are updated)
+
+Gain access through "social engineering":
+- Involve multiple people and multiple organizations in effort to make you drop your guard to gain access
+(ex. @N, involved bad guy getting last 4 digits from Paypal, then GoDaddy to obtain @N's user name and password, took control all of his domains)
+a) authority - police saying they have authority to obtain XX information
+b) intimidation - bad things will happen to you, if you don't help
+c) consensus/social proof - well, your coworker did it for me last time
+d) scarcity - must make change before time expire (time pressure)
+e) urgency - this needs to be done now (alongside with scarcity)
+f) familiarity/liking - someone you know, common friend
+g) trust - I'm from IT, i'm here to help
+
+Denial of service (DoS):
+- Can be both friendly and an attack
+- Distributed DoS (DDoS): an army of computers [botnet] to bring down a service
+
+ARP poisoning: 
+- Takes advantage of DNS because of the lack of security
+
+Man-in-the-middle (local network): 
+- From ARP, computer sends ARP request for MAC Address of router by requesting sending out an IP 192.168.1.1. Router then responds, I have that IP 192.168.1.1, I have the MAC Address _____. Computer then stores ARP Cache, if I need IP 192.168.1.1, then I'll use MAC Address _____. 
+- Bad guy takes advantage of this, response I have 192.168.1.1 (even though they might have 192.168.1.4). The ARP Cache then changes to the bad guy's device. 
+- ex. use ettercap
+
+Man-in-the-browser (not on local network);
+- Create proxy on your system, send information in and out of the proxy
+- Sees all traffic, everything looks the same as always does on the browser
+
+Buffer overflows:
+- When writing to memory, it spills over the allocated space for that amount of data. Usually there are bounds check to make sure it doesn't overflow. 
+- Bad guys can write things outside of that allocate space, takes advantage of bounds not set - bad guys would try to write thigns to grant them access into the system
+
+Code injection:
+- When inputs are not checked, they can inject their own code (HTML, Javascript, etc.)
+- ex. SQL injection "Smith" -> "Smith OR '1'='1
+- XML Injection, LDAP (Lightweight Directory Access) Injection
+
+Cross-site scripting (XSS) (?):
+- Information from one browser screen onto another browser screen
+- Non-persistent (reflected) XSS attack: putting script inside an input box in a search engine (taking user's credentials, cookie information), so when a user search, all of the cookies/logins are sent to the bad guy through scripting
+- PREVENTION: Input checking
+- Persistent (stored) XSS attack: similar to above, but now the information taken is stored. And anyone that access that information also carries that attack (useful for social media, when a post has javascript running, for those that read the post, then they are also infected). Therefore, a popular post will spread much faster
+
+Cross-site request forgery (one-click attack, or session riding)
+- Abbreviated XSRF or CSRF (sea surf)
+- Takes advantage of a user that has authenticated to a website, there is now a trust established. Bad guys take advantage of this trust. Everything that is trusted between the website and the browser is trusted to be you
+- ex. Think TD, you can't have 2 browsers open. It will ask you to login again. If bad guy sends you a hyperlink that has the action, send money to bad guy and you are already logged in with another browser, then the browser would think you are already logged in (trust), and will perform the hyperlink action (unknowingly). Bank validates, you are already trusted and logged in and will perform the action.
+- PREVENTION: The website should be designed with anti-forgery techniques (cryptographic token)
+
+Privilege escalation: 
+
+DNS Poisoning/Spoofing:
+1) Hack the DNS Server, such that it will translate the destination website to another IP Address
+2) Modify the client host file. Changing the file or executable directly will not even go through the DNS Server, simply direct them straight to the IP Address
+
+Domain Hijacking:
+- Gain access into the company's domain and changing the registration of the domain name
+- Generally done by unauthorized access 
+
+Zero-day attacks:
+- Finds vulnerability but does not exploit right away. Waits until they want to exploit it.
+- Therefore, without an immediate exploit, no one knew a patch was needed until the bad guys want to exploit it 
+
+Replay attacks:
+- Need to access raw network data (Network tap, ARP Poisoning, Malware on victim's computer), then reuse that known data to exploit
+- DIFFERENT THAN MitM attack as it does not require the original workstation
+- PREVENTION: Salt the password when sending it through the network (the password is different everytime it goes through the network), or encrypt the information
+
+URL Hijacking:
+- badly spelled domain name (typosquatting - poor spelling/brandjacking - takes advantage of your brand):
+> sell it to the correctly known domain OR redirect to competitor
+> phishing site
+> drive-by download
+
+Clickjacking:
+- Make user think they are clicking on something, but there is another layer underneath
+
+Session Hijacking (sidejacking):
+- Uses session ID (when users sign in with username and password, server sends back session ID), typically from Cookies to authenticate themselves - similar to previously authenticated
+- PREVENTION: Encrypt end-to-end (but additional load to web server - HTTPS)
+
+Driver manipulation:
+- Drivers sits between the OS and hardware, privledged code trusted by OS
+- Being so trusted, this can be abused
+
+Shimming:
+- ex. In compatibility mode (Application Compatibility Shim Cache), you can select different Windows running 
+- Shimming occurs when you select an older version of Windows that is more prone to old security requirements, if old version of Windows is used, you risk having less security requirements
+
+Metamorphic Malware:
+- Everytime someone downloads malware, it is downloaded as a different .exe
+- Makes it different to identify
+- Code becomes reorganizes, therefore it is harder to track a signature based identification
+- PREVENTION: Layered-approach: Anti-virus signature, adding blocking of known malicious URL, offline backups
+
+Spoofing:
+- Pretends to be something they are not
+- ARP Spoofing (bad guy sitting in network), Caller ID spoofing, E-mail address spoofing, Fake web server, fake DNS server, etc. 
+- MAC Spoofing: devices are built-in with a MAC address, but many drivers allow you to change the MAC address. Therefore, ISP expect certain MAC addresses to be connected to their network, but if the bad guy decide to be spoofing that MAC address, then attacks can arise
+- Similarly, IP Spoofing. IP spoofing is easier to detect since IP address has a range, but MAC Address does not.
+
+Wireless replay:
+- Wireless is easier to capture data (because over the air) than Wired replay
+
+WEP (Wired Equivalent Privacy):
+- No longer used, prone to cryptic vulnerability
+- Could not stop replay of 802.11 packets
+
+Rogue Access Points:
+-  wireless access point that has been installed on a secure network without explicit authorization from a local network administrator, whether added by a well-meaning employee or by a malicious attacker
+- Consider using 802.1X (Network Access Control)
+
+Wireless evil twin:
+- similar to rogue access points, but configure the same way as existing network (same SSID and security setting)
+- overpower the existing access point, then people would connect to those and the bad guys can capture their data
+
+Wireless jamming:
+- Radio Frequency jamming (could be intentional or not - microwave, fluorescent lights)
+
+WPS (Wi-Fi Protected Setup):
+-  a.k.a Wi-Fi Simple Config
+- Design flaw: 8-digit number (7 digits + 1 digit (checksum)
+> Original assumption: 10,000,000 possible combinations
+> But in reality, it checks the 1st 4 digits, then last 3 digits. 10,000 possibilities for the 1st half and 1,000 possibilities for the second half
+> To go through all the possibilities, it would take 4 hours, therefore lockout and slowdown functions are implemented, then it takes 1 day to 1 week
+- Pixie Dust: WPS PIN poorly encrypted, then offline brute force - 30minutes for cracking down
+- PREVENTION: Don't use WPS
+
+Bluejacking (Bluetooth):
+- Send message to mobile device over bluetooth
+- Within 10 meters
+- Can no longer occur with updated bluetooth
+
+Bluesnarfing (Bluetooth):
+- Access your data over Bluetooth 
+- Found in 2003
+
+RFID (Radio-frequency identification):
+- Everywhere... used for tracking
+- Mostly powered externally by radio frequency 
+- Some are powered internally
+- Data capture between RFID tag and radio frequency
+- Many of these RFID tags are encrypted, but decryption can be found on google
+
+NFC (Near field communication):
+- Allow communication when 2 devices are closed to each other (ex. payment system, start bluetooth pairing)
+- Uses access token
+- Danger: Someone in local area can capture/jam the device
+- Danger: Relay/Man-in-the-middle attacks
+
+Wireless Disassociation Attack:
+- wireless DoS attack
+- removing user from the wireless network
+
+Cryptographic Attacks:
+- Users will encrypt their data with a key, the bad guy doenst have this key. Therefore, bad guy will use cryptography to break into the data
+> KPS (Known plaintext attack), using plain text in the file to "wedge", using that to decrypter the rest of the message. The known plaintext is known as the "crib"
+
+Passwords across different OS:
+- Stored as "hashes" (one way communication)
+- To get this hash, you must hash out every combination, then see if the 2 hashes match each other
+> ex. ABC = 42ef19c31...n , we will try every combination of 2IM, 2MD, EEZ = 10DKkksk, until we find ABC = 42ef19c31...n 
+- To optimize this, we create "Rainbow Tables"
+
+Passwords - Rainbow Tables:
+- An optimized, pre-built set of hashes. Now we just do a simple search
+- Problem: different OS stores hash in different ways (Window hashes is different than MySQL hashes)
+- Extra security: 'salt' the password, extra layer of protection
+
+Passwords - Dictionray attacks:
+- using common words to crack password
+
+Hash Collison - Passwords - Birthday Attack:
+- In a bunch of plain text, the hash values are different, this makes it obvious to the attack, which values are hash values as plain text are the same
+- Issue found in MD5 hash 
+
+Weak encryptions:
+- 802.11 WEP (this RC4 key can be recovered by gathering enough packets)
+- DES Data Encryption Standard (Small 56-bit keys, can be easily brute forced)
+- Hash that has no salt, no session ID, no encryption, no timestamp (vulnerable to Replay Attacks)
+
+============================ 1.3 ============================
+
+Threat actors (aka bad guys):
+1) Script kiddies 
+- runs pre-made (could be random) scripts to find exploits
+- looking for bragging rights
+2) Hacktivist
+- Has specific goals (DoS, information gathering)
+- limited funding
+3) Organized crime
+- Professional
+- a lot of funding
+4) Nation states (government)
+- massive funding
+5) Insiders (already work inside, IT people)
+6) Competitors
+
+============================ 1.4 ============================
+
+Penetration test
+- Simulate an attack to gain access to system
+
+Passive reconnaissance
+- Learn from open source, information gathering
+
+Active reconnaissane
+- Trying to open door, but don't open it (relatively easy to be seen)
+
+Process of the hack
+- Get into the network (initial door)
+- Once in, set up backdoor incase the initial door gets patched
+PREVENTION: Protect inside as much as outside (once inside, bad guys should also have trouble)
+
+Test: Black box/white box/grey box 
+- Black box - no info given, penetration test must be done without any knowledge prior of the system
+- White box - given all of the info
+- Grey box = black and white box (subset of the network, or certain areas revealed)
+**Tester: Metasploit is a popular tool for penetration testing
+
+============================ 1.5 + 1.6 ============================
+
+Vulnerability scanning
+- only scan, but no exploits are performed
+- non/instrusive scan
+- non/credential scan (emulates an outside/inside attack)
+**SOFTWARE: "nikto"
+
+Vulnerability type
+
+Race condition:
+- When the software/code does not consider that multiple things can happen at the same time
+
+Embedded system vulnerabilities:
+- System by manufacture, end user never sees this
+- Outdated, may not even be upgradable
+ex. Linksys and D-link had vulnerabilities, and CIA knows about this, so they take advantage of this unknown software and install their own firmware to see all the traffic
+
+Weak cipher suites:
+- Use at least 128bits encryption key
+- Do not use old Hash such as MD5
+- TLS is the most common issue
+
+Application and memory:
+- Application uses memory, therefore if we were to manipulate the memory, then we can manipulate the application
+> Memory leak: when an application is not releasing its unused memory. This memory will continue to grow until it crashes the system
+> Integer overflow: when you put a large amount inside a small amount of space, the extra amount might allow for people to access the system
+> Buffer overflow: allows storage of variable into other memory area/allocated space, potentially allow more access into the system
+> NULL Pointer dereference: programming technique that reference a portion of memory, and when that memory is null, could cause DoS, applicatoin crash
+> DLL injection: dll are libraries used by the application, the bad guys didn't write this application. The bad guys will create their own dll, and when the user references that dll, it will run the code 
+
+============================ 2.1 ============================
+
+Firewall:
+- Traditional firewall, filter OSI layer 4 Transport Layer (TCP/UDP)
+- Modern firewall, filter all the way up to OSI 7 layers of OSI up to Application layer
+- Most firewalls can serve as layer 3 devices (routers) and VPN (encrypting traffic in/out of network)
+
+Stateless Firewall:
+- Does not keep track of traffic flow, each packet is individually examined 
+- 2 Rules for Checking rule base for outgoing traffic and then checking rule base again for incoming traffic
+
+Stateful Firewall:
+- Keep track of traffic flow through sessions
+- 1 Rule for outgoing, incoming traffic is managed by sessions
+- Most firewalls are stateful devices
+
+Firewall Rules - Access Control Lists (ACLs):
+- List of variables that allow or disallow traffic called on tuples (source ip, destination ip, port number, time of day, application, etc)
+- Firewall then takes action basd on the rules through a logical path (top-to-bottom)
+
+Modern devices:
+- All packets are examined
+
+VPN:
+- Virtual Private Network
+- Encrypt private data traversing a public network (2 locations communicating)
+- Encrypted tunnel
+- Common: SSL VPN (SSL/TLS Protocol TCP443)
+
+VPN Concentrator:
+- Device designed for VPN encyrption and decryption
+- Designed for communication simultaneously 
+- Think WCR1 and SDC1 are both Concentrators
+
+Types of VPN (browser access even if not communicating with Corporate):
+- Normal VPN: Corporate <-tunnel-> Firewall <-tunnel-> User
+- Full tunnel VPN: User -> Firewall -> Browser -> Firewall -> User
+- Split tunnel VPN: User -> Browser -> User (No firewall involved)
+
+IPSec (Internet Protocol Security):
+- Used by VPN to communicate
+- Security OSI Layer 3
+- Authentication and encryption for every packets
+- Confidentiality and integrity/anti-replay check
+- Standardized protocol, therefore can have 1 manufacture on one side and a different manufacture on the other side - using IPSec
+
+IPSec standard protocols:
+- Authentication Header (AH)
+- Encapsulation Security Payload (ESP)
+- Most IPSec uses BOTH AH and ESP (AH authenticate the entire packet, and ESP Encrypts the Data) to ensure it was sent by the original station
+
+IPSec modes of communication (original packet = IP Header + Data):
+- Transport mode (IP Header - *IPSec Headers - Data - *IPSec Trailers) **Encrypted Data**
+- Tunnel mode (*New IP Header - *IPSec Headers - IP Header - Data - *IPSec Trailers) **Encrypted IP Header and Data (with the New IP Header, the bad guy will not know what was in the original IP Header)**
+
+Authentication Header (AH):
+- Hash of packet and a shared key
+- MD5, SHA-1, SHA-2 are common
+- Adds AH to packet header
+"Authentication Mode"
+
+Encapsulation Security Payload (ESP):
+- 3DES or AES for encryption
+- Add header, trailer and Integrity Check Value
+"Encryption Mode" authenticate everything but the "New IP Header" and "Integrity Check Value"
+
+NIDS / NIPS:
+- Network Intrusion Detection System (NIDS)
+- Network Intrusion Prevention System (NIPS)
+
+3 types of monitoring:
+1) Passive monitoring:
+- Does not block traffic
+- But once it senses instrusion, it will send you an alert
+2) Out-of-band response:
+- When malicious traffic is identified, IPS can send TCP RST (reset) frames, will close the session between the 2 devices, unless they setup another traffic flow
+- Limited to TCP. UDP does not allow this reponse 
+3) Inline monitoring:
+- For more control, IPS will be inline 
+Internet -> Firewall -> IPS -> Core Switch
+- If malicious traffic is detected by IPS, IPS can drop the traffic
+
+IPS idnetification blocking:
+1) Signature-based:
+- looking for a perfect match
+2) Anomaly-based:
+- builds a baseline of what is normal on the network, then blocks the anomaly traffic (abnormal) at the IPS
+3) Behavior-based:
+- If user deletes or changes a file, IPS will be able to identify this behavior
+4) Heuristics:
+- Using AI to identify whether an attack is taking place
+
+False negative < False positive 
+
+Routers:
+- layer 2 = switch
+- layer 3 = router, because makes decision based on IP Address
+- layer 3 = switch with a router built-in
+- Routers were not designed to be security devices, but they do have some security features built in (ACL)
+- ACL is associated with ingress/egress of the traffic going in and out of the interface of a router
+
+Recall ACL (Access Control list) evaluates on certain criteria:
+- Soruce/Destination IP 
+- TCP/UDP port numbers 
+- ICMP
+
+Anti-spoofing:
+- ACL will work
+- Enable RPF (Reverse Path Forwarding), the response to an inbound packet should return the same way, if not, packet is dropped immediately
+
+Switches:
+- layer 2 device, because makes decision based on MAC Address
+
+Switch security:
+1) Network Access Control (NAC) - IEEE 802.1X Port Based
+- You don't get acess until you authenticate
+- Port based as in 'Physical Ports', not TCP/UDP ports
+2) Disable unused ports
+3) Duplicate MAC address checking 
+
+Switch loop prevention:
+- Switches are based on MAC address
+- When 2 switches are connected to each other, they'll send traffic back and forth because no counting mechanism at the MAC layer
+**PREVENTION: Spanning Tree Protocol: prevents loops in bridged switched networks IEEE standard 802.1D since 1990 - created by Radia Perlman
+
+Spanning Tree Protocol:
+- Creates blocks to prevent loops
+- Intelligent enough to change routes if needed (changing blocks to other parts of the network to prevent loops)
+
+Flood guard:
+- Prevent DoS
+- Switches maintain a large number of MAC addresses, if we were able to flood the network with MAC addresses, we can overflow the index of addresses, causing a DoS
+- Flood guard, sets a maximum number of MAC addresses on an interface to prevent overloading on a network. It will then start disabling and filtering of adresses to prevent denial of service
+
+Layer 3 switches:
+- Switches that have routing capbilities
+- Switches still base its forwarding decisions on Layer 2 MAC addresses, but it can also forward traffic based on Layer 3 IP configuration
+
+Proxies (Application):
+- Sits between users and internet
+- Proxies cache information, access control, URL filtering and content scanning (security)
+- One of the simpliest proxy is NAT (Network Address Translation)
+- Proxy may only know one or many applications (HTTP, HTTPS, FTP, etc)
+
+2 modes of Proxy:
+1) Explicit - we have to explicitly configure our OS to use a proxy in order to communicate to the internet
+2) Transparent - end users do not know a proxy is in place. No configuration is needed on the end-user OS to use the proxy
+
+Forward Proxy: 
+- An "internal proxy"
+- Proxy used on the inside of the network. Users will make a request to the internet. A proxy will send that message on the user's behalf and when the internet responds, it will make sure the information being received is legitimate
+- Can be controlled with URL Filtering
+
+Reverse Proxy:
+- Inbound traffic from the internet to your web servers
+
+Open Proxy:
+(INTERNET <-> Proxy <-> INTERNET)
+- If the URL Filtering is active and you cannot access a specific website, then you can reach out to a Proxy, and that Proxy can go to that website for you. Therefore, bypassing URL filtering
+- Security concern is that these Open Proxy can send/receive traffic, but on receiving the traffic they can add in their own malicious code and send it onto users
+
+Load Balancers:
+- Distributes the load onto multiple resources depending on the situation
+- Fault tolerance ensures services are available. If a server goes down, other servers can become available to maintain the network
+- Load Balancers distributes all traffic (TCP Protocols, SSL Encryption/Decyption, Caching locally for more efficient service, Prioritize QoS Quality of Service)
+- Scheduling load balancers schedules how traffic flow (sequential, round robin, prioritize weight, etc)
+- Scheduling~ Affinitiy/Kinship/Likeness - for an end-user or specific applications, it is likely that the same traffic will flow to the same server if the same server was used previously 
+- Servers can be set active/passive depending on load. If server A goes down and server C and D are on standby, then C can become active. Once server A is restored, then C will go back to standby while A becomes active again
+
+Wireless Access Points (WAP):
+- WAP is a bridge that extends wired network onto the wireless network
+- WAP is a OSI layer 2 device
+- SSID (Service Set Identifier) is the network name
+- Disable SSID Broadcasting will not show the SSID on the wireless list (not a real security function) because packet capture on the wireless network will be able to identify the SSID ~ this is just "security with obscurity" (Trying to be secure, but so simple to circumvent, that acts as no security at all)
+
+MAC Filtering (Media Access Control):
+- Only allow access through specific physical hardware address (MAC address)
+PROBLEM: MAC addresses can be spoofed
+
+Power level controls:
+- Setting wireless networking power by limiting signal to be inside of your building
+- Setting this power as low as possible, but still allowing all users to be able to use it 
+
+Band selection and bandwidths:
+- Throughput, the maximum theoretical throughputs
+- 2.4GHz (Channel 1, 6, 11 - avoid overlap) and 5Ghz (Channel 36, 40, 44... 165 - avoid overlap)
+
+Attennas:
+- Omnidirectional attenna = all directions
+- Directional antenna, measured with db gain (logrithmic, double power every 3gb of gain) 
+	-> Yagi antenna - directional, high gain (flat)
+	-> Parabolic antenna - focus the signal to a single point (curved)
+
+Standardized Wireless Protocol for management of AP:
+- LWAPP Lightweight Access Point Protocol = management console
+- Cisco's proprietary is CAPWAP (based on LWAPP)
+
+Thick/fat access points:
+- AP itself, handles the wireless management
+
+Thin access points:
+- AP only offers 802.11 wireless, no wireless management
+BENEFIT: cheaper to produce
+
+SIEM Security Information and Event Manager
+- Send all of the security events from Switches, routers, firewall, servers, desktop (all of these must have synchronize timestamp)...  to ONE database
+- Use NTP Network Time Protocol to synchronize all time
+- All devices uses a standard protocol of "Syslog" 
+- SIEM uses a central logging receiver integrated into the SIEM
+- SIEM uses a lot of disk space, think Terabytes
+- WORM Write Once Read Many drive technology 
+- Event de-duplication - filter out noise, focus on the real problem
+- Real-time security alerts, forensic analysis after an event
+
+DLP Data Loss Prevention systems:
+- Stop data before the bad guys get it (data leak)
+- "Data in use" data used in the memory of the computer, endpoint datapoint watch tool to prevent bad guys from accessing the memory
+- "Data in motion" data moving through the network, constantly watching for Social Security Numbers, Credit Card Numbers that should not be in the clear on the network.
+- "Data at rest" data that is stored on the server
+- DLP on USB blocking, worm virus "agent.btz" replicates using USB storage which bypasses DLP
+- Cloud-based DLP - located between users and the internet - watches every byte of network traffic
+	-> no hardware, no software
+- DLP and e-mail - can be cloud based e-mail DLP
+	-> Incident, Boeing November 2016, did not have DLP setup for outbound e-mails containing Social Security number, etc.
+
+Network access control:
+- Edge control is a firewall at the edge of the network before it goes out to the internet
+- Network access control can be controlled inside or outside the network based on many rules, this access can be enabled or disabled
+
+BYOD Health Check:
+- Trusted? Running Anti-Virus? Windows updated? 
+1) Persistent agents: permanently install onto system, periodic updates may be required
+2) Dissolvable agents: one-time health check
+3) Agentless NAC Network Access Control: integrated wtih Active Directory, health checks during login/logoff
+-> Failing accessment -> access only Quarantine network (limited access)
+
+Mail gateways:
+- Stop at gateway, can be cloud or on-site
+1) Control spam 
+- whitelisting
+- must follow SMTP standards (RFC standard)
+- rDNS Reverse DNS - block e-mail where the sender's domain doesn't match the IP address
+- Tarpitting - intentionally slow down server e-mail receive, therefore discouraging spammers because they like to send as many as possible
+2) Anti-virus built-in
+3) DLP enabled for blocking confidential information in e-mails
+
+SSL Accelerators:
+- When you have a lot of web servers, a lot of encryption is needed to happen which slows down the application due to increase hand-shake process, to prevent this, use SSL Accelerator
+- Increase hand-shake process by putting this task on SSL Accelerator
+- Transfers symmetric key using the asymmetric encryption
+- Off-loading handshake process to a seperate device instead of using the webserver to accomplish this task (aka SSL offloading, SSL termination)
+
+SSL/TLS trust:
+- Since the message between the user and the browser is encrypted, how does anyone decrypt it? This is based on SSL/TLS relies on trust on the 3rd party site
+- The 3rd site contains trusted certificates (trusted CAs = certificates authorities - a website pays a company to have this certificate) -> user goes to a webiste, and user's browser checks the web certificate
+- There is a proxy (usually a Firewall) between the user and the internet. This proxy handles the trust relationshiop as follows
+1) user has Internal CA Certificate
+2) user goes through the proxy, onto the internet, internet then sends back a Public Key to proxy
+3) proxy sends Public Key (Internal) to user, because this is trusted, then the SSL works seamlessly
+**Due to there being an internal Public Key
+
+HSM Hardware Security Module
+- high-end cryptographic hardware to perform crypto functions
+- Secured storage for all certificates and keys
+- Can perform as SSL in-point, for SSL Accelerators
+
+============================ 2.2 ============================
+
+Software Security
+- Protocol Analyzer - gather packets on the network and analyze
+- Network scanners - scan for IP addresses and open ports (wireshark) OR rogue system detection for those really hidden devices from a layer 2 ARP
+	-> Nmap/Zenmap, Angry IP Scanner
+- Wireless security is different, therefore three are Wireless scanners and wireless crackers
+	-> There are wireless cracking tools (Aircrack-ng suite, Fern)
+
+Passwords:
+- Stored as hashes (one-way trip), but there is no way for a hash to be stored as a password
+- Bad guys can use your hash to gain access, but to access these hashes are difficult
+- Password cracking tools: John the Ripper, Ophcrack
+
+Vulnerability scanner vs penetration test:
+- Vulnerability scanner does not penetrate the system, minimally invasive but shows you information/log afterwards to see what vulnerabilities you have
+	-> Tools: Microsoft Baseline Security Analyzer, Tenable Nessus, Nikto
+
+Exploitation frameworks:
+- Prebuilt frameworks for exploiting the system, used by the bad guys, but also for those wanting to see how vulnerable is their system
+	-> BeEF Browser Exploitation Framework Project for browsers
+	-> RouterSploit - Router Exploitation Framework for routers 
+	-> Metasploit - Build your own vulnerability tests for servers
+ 
+Data sanitization tool:
+- Erasing data on old harddrive
+1) Overwrite the data once, and it's gone
+2) Sanitize entire HD: Darik's Boot and Nuke (DBAN)
+3) Sanitize individual file/fodlers: Microsoft SDelete (Secure Delete)
+
+Steganography Tools (Greek for "concealed writing"):
+- Inside pictures - ex. embedding code inside of images as pixels
+- Network based - ex. embed messages in TCP packets
+- Invisibile watermarks - ex. yellow dots on printers to represent which printer it came from and timestamp
+
+Honeypots:
+- attract the bad guys, trap them there
+- Honeypots can be create to look like an entire organization (virtual servers, networks)
+	-> Tools: honeyd
+
+===Commands===
+ping:
+- uses ICMP Internet Control Message Protocol
+
+netstat (network statistics):
+- netstat -a shows all active connections
+- netstat -b shows -a AND shows windows binaries
+- netstat -n gets IP addresses instead of names (does not DNS)
+
+traceroute:
+- tracert 8.8.8.8
+- see hops(routers) to destination
+- uses ICMP 
+
+nslookup and dig:
+- "nslookup" dns names & ip address (no longer updated), use dig instead
+- "dig" Domain Information Groper [linux]
+
+ARP Address Resolution Protocol:
+- "arp -a"
+- determine MAC address based on IP 
+
+tcpdump Linux (WinDump for Windows):
+- capture packets from command line, real time, filters
+
+Nmap (Linux):
+- Network mapper: finds all of the devices on the network
+- port scan: finds devices and identify open ports
+- OS scan: discover the OS of the device
+
+netcat (Linux):
+- read or write to the network
+- open a port and send or receive traffic
+
+ncat (Linux):
+- shows the HTTP code of a browser
+
+============================ 2.3 [Common Security Issues] ============================
+
+Encryption
+- Some traffic are sent in the clear: Telnet, FTP, SMTP, IMAP
+
+Segmentation fault
+- When an application want to access a restricted part of memory on the OS
+- This could lead to vulnerability, malware attempting to access restricted memory
+- The OS looks out for you
+
+Certificate issues
+- Missing / Out of date certificates, prone to MitM attacks
+
+Avoid old technology
+- DES Data Encryption Standard - 1975 (56 bit keys, can be easily brute-forced)
+- WEP Wired Equivalent Privacy  - (Vulnerabilities found with RC4 ciphers and initialization vectors)
+- SHA-1 Secure Hash Algorithm 1 - Hash collisions, many documents shared same hash, therefore easy to identify the keys pair values
+
+============================ 2.4 ============================
+
+IDS/IPS [Intrusion Detection/Prevention System]
+- Protect based on known signature (if patterns matches malicious, then blocked)
+	-> does not have to deal with encryption because this is on our desktop
+- Protect based on activity (modifying files on computer?)
+
+File integrity check
+- If Malware affected the core OS (original files in place?), can be detected and repaired with "sfc /scannow"
+- Finished with "cbs.log" (component based servicing)
+
+Application whitelisting:
+- Application hash - only allow applications with a unique identifier to run
+- Certificate - only digitally signed apps from certain publishers are able to run
+- Path - only certain path i.e. C:/program files (x86)/ ... is allow to run 
+- Network zone - can only be ran inside a specific network
+ 
+UTM/All-in-one security appliance (Unified Threat Management )
+- It's call this because it provides all of the security tools into one (ex. it could be a malware inspector, spam filter, firewall, etc)
+
+DLP Data Loss Prevention 
+- Watch the type of data going through the network (ex. credit card number, stops the data from leaving your network)
+
+DEP Data Execution Prevention
+- OS and CPU work together to allocate a specific section of the memory to be executables
+- If malware tries to execute in an area of memory that is not allocated for executable, then it will be flagged by DEP, prevented from infecting the system
+- Logs can be viewed in Event Viewer
+
+WAF Web Application Firewall 
+- Not a normal firewall
+- Looks for conversations between a "web client" and a "web server"
+- Stops input from an unexpected web application
+ex. SQL injection. Using the web front end to access web backend
+ex. Credit Card security uses DSS Data Security Standard
+
+
+============================ 2.5 [Mobile Device Connection Methods] ============================
+
+Cellular devices can use:
+- Cellular
+- WiFi 802.11
+- SATCOM Satellite communications (using Satellite, not cellular -> use remote locations, natural disaster)
+	-> uses voice and data
+- NFC Near Field Communications 
+- *NEW* ANT/ANT+ (use 2.4GHz ISM Industrial, scientific, medical) 
+	-> used on "Internet of Things" devices (Fitness device, heart rate monitor)
+	-> NOT 802.11 or bluetooth
+- IR Infrared (used to be used for printing, now everything uses it)
+
+MDM Mobile Device Management
+- Centralized management of the mobile devices (restricting camera, etc)
+- Perform remote wipe through this manager (stolen, missing, fired)
+- Geolocate
+- Geofencing - within certain location, can turn off camera (office), authentician, etc. 
+- Biometrics (fingerprint, face)
+- Containerization - separate company data from personal data through these BYOD via containers. Therefore if someone leaves, we may only wipe the container information
+- Full encryption. But if the encryption key (kept in MDM) is lost, then we lose full control to that device.
+
+Mobile devices:
+- Rooting - Android
+- Jailbreaking - iOS
+- Firmware OTA updates (over the air) - no cable required
+- USB OTG On-The-Go - connect mobile devices together without a computer
+
+WiFi Direct/ad hoc:
+- WiFi uses SSID AP
+- Ad Hoc is when 2 devices are connecting to each other without an AP
+- WiFi Direct connects all devices together, if one device is connected, the other one is as well
+
+COPE:
+- Cooperate owned, personally disabled
+- Managed through a centralized device manager
+- Similar, CYOD choose your own device
+
+Corporate-owned
+- Not COPE, company owns and controls the device
+
+VDI/VMI Virtual Desktop/Mobile Infrastructure
+- Simply using the device to access cloud apps and data
+
+============================ 2.6 [Secure Protocols] ============================
+
+SRTP Secure Real-Time Transport Protocol (Voice and Video)
+- Add security to RTP
+- Adds encryption
+- Authentication, integrity and replay protection HMAC-SHA1 (Hash-based message authentication code using SHA1) makes sure there is no man-in-the-middle and the content is from the original audio/video stream
+
+Time synchronization
+- Classic NTP Network Time Protocol syncronizes all clocks on the network - no security features (prone to DDoS attack)
+- NTPsec - secure NTP
+
+E-mail
+- S/MIME Secure/Multipurpose Internet Mail Extensions
+	-> Public key encryption and digital signing of mail content 
+- Secure POP and Secure IMAP
+	-> Uses existing POP3 and IMAP and adds SSL encryption
+- SSL/TLS
+	-> Secure Sockets Layer/Transport Layer Security (TLS is the updated version of SSL)
+	-> When using browser to access e-mail, we can use HTTPS/SSL/TLS to encrypt the entire communication between you and the e-mails 
+
+File Transfer
+- FTPS FTP Secure
+	-> FTP over SSL (FTP-SSL)
+	-> This is NOT SFTP
+- SFTP SSH File Transfer Protocol
+	-> Uses SSH instead of SSL
+	-> File Management protocol
+
+LDAP Lightweight Directory Access Protocol
+- Manage 1000 of printers, file servers, users
+- Protocol for reading and wirting directories over an IP network
+- Uses X.500 specification
+- LDAPS LDAP Secure - LDAP over SSL
+
+Remote Access
+- SSH Secure Shell replaces Telnet
+
+DNS Domain Name Resolution
+- DNS had no security 
+- DNSSEC DNS Security Extensions 
+	-> Verifies responses from DNS server (origin authentication, data integrity)
+	-> This is done through Public Key cryptography (DNS records are signed with a trusted third party)
+
+Routing and switching
+- SSH Secure Shell
+- SNMPv3 Simple Network Management Protocol version 3 (provides security between you and the remote device)
+	-> Confidentiality - Encrypted data
+	-> Integrity - No tampering of data
+	-> Authentication - Verifies the source
+- HTTPS (Browser communication)
+
+DHCP
+- DHCP does not have built-in security, nor does it have a secure verison of DHCP protocol
+- DHCP can be "authorized" and "trusted" in Active Directory, then it can be allowed to distribute DHCP
+- For Cisco, these DHCP trusted interfaces is called "DHCP Snooping"
+- DHCP client DoS - Starvation Attack 
+	-> A device can use spoofed MAC address to exhaust the DHCP address pool
+	-> This can be prevented with the switches built-in function to limit the number of MAC Addresses per switch
+	-> Disable an interface when multiple MAC addresses are seen
+
+============================ 3.1 [Compliance and Frameworks] ============================
+
+Compliance 
+- Meeting the standards of law, policies and regulations
+
+Regulatory 
+- Consequences could be fine/jail time
+
+IT Frameworks
+- COBIT Control Objective for Information and Related technologies
+	-> Focus on regulatory compliance, risk management aligning IT strategy with organization goals
+- ITIL Information Technology Infrastructure Library
+	-> Servoce Design, Service Transition, Service... 
+
+Hardening guides
+- Keeping web server/system/application as secure as possible
+
+4 ways to have secure configuration:
+1) Information Leakage: Banner information, directory browsing
+2) Permissions: Run from non-privledged account, configure file permissions
+3) Configure SSL: Manage and install certificates
+4) Log files: Monitor access and error logs
+
+Mutliple layers of security = Defense-in-Depth
+- Never a single security
+1) Physical controls (door locks, fences)
+2) Technical controls (firewalls, encryption)
+3) Administrative controls (when ppl get fired, we need to offboard them, when ppl are hired, onboard)
+
+============================ 3.2 [Secure Network Topologies] ============================
+
+DMZ Switch
+- Allow public access to public resources
+
+Extranet Switch
+- Allow vendors/suppliers to access our network resources only with a specific login/password
+- This specific Extranet resource would not be on our internal network, but only the resource that vendors/suppliers are allowed to access
+
+Intranet
+- Only available internally or VPN access
+
+NAT Network Address Translation
+- IPv4 is exhausted (4.2billion), therefore we use NAT (public ip address into private ip address through a router)
+- NAT does not have security, it only hides the IP address, there is a work-around for this
+- NAT is often combined with Firewall, and Firewall is the security mechanism
+
+Network Segmentation
+- Can be physical, logical or virtual (VLAN Virtual Local Area Networks)
+- Separating devices on the network can have its advantages
+1) Performance - isolating high-bandwidth applications
+2) Security - users should only be able to access what they need
+3) Compliance - some applications requires certain compliance, while others do not. Makes it easier to make certain devices/networks compliant
+~"Air Gaps" provides no way for 2 networks to communicate
+
+VPNs:
+- site-to-site VPN is when 2 corporate networks, usually with VPN built into the firewall to communicate
+- host-to-site VPN (remote access VPN) is when a remote user connects to a VPN concentrator (site)
+- host-to-host VPN, software-based (no hardware)
+
+Packet filters:
+- allow / block a specific type of traffic
+- not tracking a network state, packet filters are a set of rules
+
+Firewalls:
+- advanced filtering based on IP address, port #, application
+
+Proxy Servers:
+- Proxy servers takes the request from the user, sends it to the proxy (application, etc), then receives the result from the proxy, examines it to ensure it is safe, then sends it back to the user
+- Proxy servers provides security through content filtering (access control, caching, URL filtering, content scanning)
+
+Forward proxy:
+- Inside the user's network, acts as a filter before the information is sent out to the internet
+
+SSL accelerators
+- When user makes requests to the web server through HTTPS, the traffic gets encrypted. For a big web server, when the server has to keep track of all the encryption, requiring a lot of CPU cycles. Therefore, this cryptographic overhead gets handed off to the SSL accerlator
+- Client communicates to SSL Accelerator over HTTPS, and SSL Accerlator communicates to server over HTTP
+
+Load balancers:
+- SSL accelerators built-in
+- Spread the load amongst different devices/servers
+
+DDoS mitigation Distributed Denail of Service (ways to avoid DDoS...)
+- Cloud-based, can run reverse proxy, verify the traffic is good through the proxy, then allow traffic to flow
+- On-site tools, include DDoS filtering in a firewall or IPS
+
+Capture packet:
+1) Physical tap, put a tap in the middle, then off ot the analysis tool
+2) Software tap (Port Mirror), aka SPAN (Switched Port ANalyzer), plugs into a switch, then sends all traffic from 1 interface, then send it to SPAN
+
+SDN Software Defined Networking:
+"Click a few buttons, add a firewall"
+- Build a network infrastructure in your environment
+1) Control plane - configuration of the device
+2) Data plane - doing the work (forwarding frame, etc)
+- Benefit: Changes can be done quickly and rolled out
+- Benefit: Centrally managed, globally view
+- Benefit: No human intervention, if wanting to increase network switches, this can be done virtually (software)
+- Benefit: Open Standard/Vendor neutral
+
+============================ 3.3 [Hardware Security] ============================
+
+Full Disk Encryption (FDE)
+- Encrypts everything, not just a single file (OS, all files)
+- Will need password for decryption
+> Windows: Microsoft BitLocker
+> Apple: Apple FileVault
+> Linux: Linux Unified Key Setup (LUKS)
+> No OS -> Drives: Self-Encrypting Drive (SED)
+
+Trusted Platform Module (TPM)
+- Part of the device that performs cryptographic functions
+- Cryptographic processor - random number generator, key generators
+- Persistent memory - unique keys burned in during production
+- Versatile memory - storage keys, hardware configuration
+*No dictionary attacks
+
+Hardware Security Module (HSM)
+- high-end cryptographic hardware
+
+
+
